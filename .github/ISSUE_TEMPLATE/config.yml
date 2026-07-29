@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Runner installation guide
+    url: https://github.com/teze3808/gopro-downloader-support/blob/main/RUNNER_INSTALLATION.md
+    about: Follow the Mac, Windows, QNAP, or Synology runner setup guide.
+  - name: Privacy policy
+    url: https://github.com/teze3808/gopro-downloader-support/blob/main/PRIVACY.md
+    about: Review what the extension processes and stores.

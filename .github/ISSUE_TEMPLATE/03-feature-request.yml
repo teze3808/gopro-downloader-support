@@ -1,0 +1,82 @@
+name: Feature request
+description: Suggest an improvement to the extension, runner, dashboard, or documentation.
+title: "[Feature]: "
+labels:
+  - enhancement
+  - needs-triage
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve GoPro Downloader. Describe the problem first so the best solution can be considered.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Chrome extension
+        - Runner dashboard
+        - Download or retry behavior
+        - Cloud inventory
+        - Installation or updates
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: What is difficult, slow, confusing, or currently impossible?
+      placeholder: Describe the user problem rather than only the requested button or setting.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Suggested solution
+      description: Explain how you would like the feature to work.
+      placeholder: Describe the workflow from the user's point of view.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Have you found another way to complete the task?
+      placeholder: Optional
+    validations:
+      required: false
+
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: How often would this help?
+      options:
+        - Every download
+        - Frequently
+        - Occasionally
+        - One-time migration or setup
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context or mockup
+      description: Drag a screenshot or mockup here if it helps. Remove private information first.
+      placeholder: Optional
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy confirmation
+      options:
+        - label: I reviewed this request and removed passwords, cookies, signed URLs, certificate private keys, and private filenames.
+          required: true

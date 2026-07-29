@@ -547,7 +547,7 @@ Never delete the mapped host data folder during an update.
 1. Open the extension.
 2. Expand `Advanced settings`.
 3. Click `Copy support summary`.
-4. Open a [support issue](https://github.com/teze3808/gopro-downloader-support/issues).
+4. Open [Help & feedback](https://github.com/teze3808/gopro-downloader-support/issues/new/choose) and select `Installation help` or `Bug report`.
 5. Paste the summary and describe the platform, NAS model if applicable, runner URL with the IP redacted if preferred, and what happened.
 6. If requested, use `Download diagnostic log` and review it before attaching.
 

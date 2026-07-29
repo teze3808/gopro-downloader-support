@@ -9,18 +9,21 @@ This is an independent community project. It is not affiliated with, authorized 
 - [Install the aria2 download runner on Mac, Windows, QNAP, or Synology](RUNNER_INSTALLATION.md)
 - [GoPro Downloader Privacy Policy](PRIVACY.md)
 
-## Support
+## Help and Feedback
 
-To report a problem or request an improvement, open an issue:
+Open the structured issue chooser and select the form that matches what you need:
 
-https://github.com/teze3808/gopro-downloader-support/issues
+- [Installation help](https://github.com/teze3808/gopro-downloader-support/issues/new/choose)
+- [Bug report](https://github.com/teze3808/gopro-downloader-support/issues/new/choose)
+- [Feature request](https://github.com/teze3808/gopro-downloader-support/issues/new/choose)
 
-When reporting a runner problem:
+For installation help or a bug report:
 
 1. Open the GoPro Downloader extension.
 2. Expand `Advanced settings`.
-3. Click `Copy support summary` and paste it into the issue.
-4. If requested, click `Download diagnostic log` and review the file before attaching it.
+3. Click `Help & feedback` to open the chooser.
+4. Click `Copy support summary` and paste it into the selected form.
+5. If requested, click `Download diagnostic log` and review the file before attaching it.
 
 Do not include GoPro credentials, authentication cookies, temporary signed download URLs, private media filenames, or unreviewed private runner logs in a public issue.
 

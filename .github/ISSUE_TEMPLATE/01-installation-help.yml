@@ -1,0 +1,123 @@
+name: Installation help
+description: Get help installing or connecting the runner on Mac, Windows, QNAP, or Synology.
+title: "[Installation]: "
+labels:
+  - installation
+  - needs-triage
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for trying GoPro Downloader. Follow the [runner installation guide](https://github.com/teze3808/gopro-downloader-support/blob/main/RUNNER_INSTALLATION.md) first, then tell us exactly where the setup stopped.
+
+        Do not include passwords, cookies, signed media URLs, certificate private keys, or private filenames.
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Runner platform
+      description: Where are you trying to run the downloader runner?
+      options:
+        - Mac with Docker Desktop
+        - Windows with Docker Desktop
+        - QNAP Container Station
+        - Synology Container Manager
+        - Other Docker host
+    validations:
+      required: true
+
+  - type: input
+    id: device
+    attributes:
+      label: Device or NAS model
+      description: For example, MacBook Pro M5, Windows 11 PC, QNAP TS-464, or Synology DS923+.
+      placeholder: Device model and operating-system version
+    validations:
+      required: true
+
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Installation stage
+      description: Where did you become stuck?
+      options:
+        - Installing Docker or the NAS container application
+        - Finding or downloading the runner image
+        - Creating the container
+        - Configuring the port mapping
+        - Configuring the read/write /data storage mapping
+        - Opening the runner dashboard
+        - Enabling HTTPS
+        - Installing or trusting the CA certificate
+        - Connecting the Chrome extension
+        - Starting the first download
+        - Updating an existing runner
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: extension_version
+    attributes:
+      label: Extension version
+      description: Shown beside GoPro Downloader at the top of the extension popup.
+      placeholder: For example, 0.2.32
+    validations:
+      required: true
+
+  - type: input
+    id: runner_version
+    attributes:
+      label: Runner version
+      description: Shown in the runner dashboard. Enter "not installed yet" if unavailable.
+      placeholder: For example, 0.2.30 or not installed yet
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps already completed
+      description: List what you did, in order, including the last step that worked.
+      placeholder: |
+        1. Installed Container Manager
+        2. Downloaded the latest image
+        3. Mapped a host folder read/write to /data
+        4. The dashboard did not open
+    validations:
+      required: true
+
+  - type: textarea
+    id: error
+    attributes:
+      label: Current result or error
+      description: Paste the visible error message. Redact private IP addresses if preferred.
+      placeholder: What appears on screen now?
+    validations:
+      required: true
+
+  - type: textarea
+    id: support_summary
+    attributes:
+      label: Support summary
+      description: In the extension, expand Advanced settings and click Copy support summary. Paste it here, or explain why it is unavailable.
+      placeholder: Paste the reviewed support summary here.
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or reviewed diagnostic log
+      description: Drag screenshots or a reviewed diagnostic log into this field. Remove private information first.
+      placeholder: Optional attachments or additional context
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy confirmation
+      options:
+        - label: I reviewed this report and removed passwords, cookies, signed URLs, certificate private keys, and private filenames.
+          required: true
