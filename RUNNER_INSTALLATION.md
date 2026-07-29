@@ -174,55 +174,6 @@ docker ps --filter "name=gopro-downloader-runner"
 
 Because the runner is on the same Windows PC, localhost HTTP is allowed.
 
-## Optional: Use Docker Compose on Mac or Windows
-
-Docker Compose is included with Docker Desktop. It makes future updates easier because the settings stay in one file.
-
-> **Screenshot placeholder: Docker Compose project files**  
-> File: `screenshots/desktop-01-compose-project-folder.png`  
-> Show `compose.yml` and the generated `data` folder on Mac or Windows.
-
-### Step 1: Create a Project Folder
-
-Create a folder named `gopro-downloader`, then create a text file named `compose.yml` inside it.
-
-Paste:
-
-```yaml
-services:
-  gopro-downloader-runner:
-    image: teze3808/gopro-downloader-runner:latest
-    container_name: gopro-downloader-runner
-    restart: unless-stopped
-    ports:
-      - "127.0.0.1:8766:8766"
-    volumes:
-      - ./data:/data
-```
-
-Make sure the filename is `compose.yml`, not `compose.yml.txt`.
-
-### Step 2: Start the Project
-
-Open Terminal on Mac or PowerShell on Windows, change to the project folder, then run:
-
-```bash
-docker compose up -d
-```
-
-Open [http://127.0.0.1:8766](http://127.0.0.1:8766).
-
-### Update Later
-
-From the same project folder:
-
-```bash
-docker compose pull
-docker compose up -d
-```
-
-Your media and runner state remain in the `data` folder.
-
 ## Option 3: QNAP Container Station
 
 The labels may differ slightly between Container Station versions.
@@ -309,64 +260,77 @@ Continue with [HTTPS Setup for a NAS Runner](#https-setup-for-a-nas-runner).
 
 ## Option 4: Synology Container Manager
 
-This method uses a Container Manager Project so the settings are easy to keep and update.
+This method uses the Container Manager interface. No extra configuration file or command line is required.
 
 ### Step 1: Prepare Synology
 
-> **Screenshot placeholder: Synology project folders**  
-> File: `screenshots/synology-01-project-folders.png`  
-> Show the `gopro-downloader` project folder and its `data` subfolder in File Station.
+> **Screenshot placeholder: Synology storage folder**
+> File: `screenshots/synology-01-storage-folder.png`
+> Show the `gopro-downloader` folder in File Station.
 
 1. Open DSM.
 2. Open `Package Center`.
 3. Install or update `Container Manager`.
 4. Open `File Station`.
-5. Create:
+5. Create a persistent folder:
 
    ```text
    /volume1/docker/gopro-downloader
-   /volume1/docker/gopro-downloader/data
    ```
 
 If your Docker shared folder is on another volume, replace `volume1` with the correct volume.
 
-### Step 2: Create the Project
-
-> **Screenshot placeholder: Synology Compose project**  
-> File: `screenshots/synology-02-compose-project.png`  
-> Show Container Manager's Project creation screen with the Compose configuration.
+### Step 2: Download the Image
 
 1. Open `Container Manager`.
-2. Select `Project`.
-3. Click `Create`.
-4. Enter:
+2. Select `Registry`.
+3. Search for:
 
-   | Setting | Value |
-   | --- | --- |
-   | Project name | `gopro-downloader` |
-   | Path | `/volume1/docker/gopro-downloader` |
-   | Source | Create `docker-compose.yml` |
-
-5. Paste:
-
-   ```yaml
-   services:
-     gopro-downloader-runner:
-       image: teze3808/gopro-downloader-runner:latest
-       container_name: gopro-downloader-runner
-       restart: unless-stopped
-       ports:
-         - "8766:8766"
-       volumes:
-         - ./data:/data
+   ```text
+   teze3808/gopro-downloader-runner
    ```
 
-6. Review the settings.
-7. Build and start the project.
+4. Select the image and click `Download`.
+5. Select the `latest` tag.
+6. Wait for the download to finish.
 
-Synology documents this workflow in its official [Container Manager Project guide](https://kb.synology.com/en-us/DSM/help/ContainerManager/docker_project).
+### Step 3: Create the Container
 
-### Step 3: Open the Dashboard
+> **Screenshot placeholder: Synology port and storage mappings**
+> File: `screenshots/synology-02-port-storage-mapping.png`
+> Show host port `8766` to container port `8766`, plus one read/write host folder mapped to `/data`.
+
+1. Select `Image`.
+2. Select `teze3808/gopro-downloader-runner:latest`.
+3. Click `Run`.
+4. Enter the container name:
+
+   ```text
+   gopro-downloader-runner
+   ```
+
+5. Enable automatic restart.
+6. Add a TCP port mapping:
+
+   | Local port | Container port |
+   | --- | --- |
+   | `8766` | `8766` |
+
+7. Add one volume mapping:
+
+   | Synology folder | Container path | Access |
+   | --- | --- | --- |
+   | `/volume1/docker/gopro-downloader` | `/data` | Read/write |
+
+8. Keep the default bridge network.
+9. Do not override the command or entrypoint.
+10. Review the settings and start the container.
+
+### Step 4: Open the Dashboard
+
+> **Screenshot placeholder: Synology runner dashboard**
+> File: `screenshots/synology-03-runner-dashboard.png`
+> Show the runner dashboard opened using the Synology IP address and host port.
 
 Open:
 
@@ -380,16 +344,9 @@ Example:
 http://192.168.1.60:8766
 ```
 
-If port `8766` is already in use, change only the first port number in the Compose file:
+If local port `8766` is already in use, choose another local port such as `32771`, keep the container port as `8766`, and open `http://SYNOLOGY_IP:32771`.
 
-```yaml
-ports:
-  - "32771:8766"
-```
-
-Then use `http://SYNOLOGY_IP:32771`.
-
-### Step 4: Complete HTTPS Setup
+### Step 5: Complete HTTPS Setup
 
 Continue with the next section.
 
@@ -523,13 +480,6 @@ docker rm gopro-downloader-runner
 
 Then run the original `docker run` command again with the same `/data` mapping. Removing the container does not remove files in the mapped host folder.
 
-For Compose:
-
-```bash
-docker compose pull
-docker compose up -d
-```
-
 ### QNAP
 
 1. Stop the runner container.
@@ -539,9 +489,11 @@ docker compose up -d
 
 ### Synology
 
-1. Open the project details in Container Manager.
-2. Choose `Build` or update/redeploy the project.
-3. Keep the same project path and `./data:/data` mapping.
+1. Record the existing port and `/data` storage mapping.
+2. Download the newest `latest` image from `Registry`.
+3. Stop the existing runner container.
+4. Recreate it from the new image with the same port and read/write host folder mapped to `/data`.
+5. Start it and confirm the dashboard still shows the existing inventory.
 
 Never delete the mapped host data folder during an update.
 

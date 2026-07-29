@@ -8,12 +8,12 @@ Place the final screenshots for `RUNNER_INSTALLATION.md` in this folder using th
 | `mac-02-runner-container-running.png` | Running runner container on Mac |
 | `windows-01-docker-desktop-install.png` | Docker Desktop installation with WSL 2 on Windows |
 | `windows-02-runner-container-running.png` | Running runner container on Windows |
-| `desktop-01-compose-project-folder.png` | Compose file and data folder |
 | `qnap-01-runner-image.png` | Runner image in QNAP Container Station |
 | `qnap-02-port-storage-mapping.png` | QNAP port and single `/data` mapping |
 | `qnap-03-runner-dashboard.png` | Runner dashboard reached through QNAP |
-| `synology-01-project-folders.png` | Synology project and data folders |
-| `synology-02-compose-project.png` | Synology Container Manager Compose project |
+| `synology-01-storage-folder.png` | Synology runner storage folder |
+| `synology-02-port-storage-mapping.png` | Synology port and single `/data` mapping |
+| `synology-03-runner-dashboard.png` | Runner dashboard reached through Synology |
 | `https-01-runner-wizard.png` | Runner HTTPS setup wizard |
 | `https-02-mac-keychain-trust.png` | Mac Keychain certificate trust |
 | `https-03-windows-certificate-store.png` | Windows trusted root certificate import |
