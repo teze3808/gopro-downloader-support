@@ -1,9 +1,11 @@
-# Guide Screenshot Checklist
+# Optional Guide Screenshot Plan
 
-Place the final screenshots for `RUNNER_INSTALLATION.md` in this folder using these filenames:
+The installation guide is complete and usable without screenshots. Future screenshots can be added here when suitable private information has been removed.
 
 | Filename | Required screen |
 | --- | --- |
+| `mac-01-orbstack-install.png` | OrbStack installation or first-run setup on Mac |
+| `mac-02-orbstack-runner.png` | Running runner container in OrbStack |
 | `mac-01-docker-desktop-install.png` | Docker Desktop installation on Mac |
 | `mac-02-runner-container-running.png` | Running runner container on Mac |
 | `windows-01-docker-desktop-install.png` | Docker Desktop installation with WSL 2 on Windows |

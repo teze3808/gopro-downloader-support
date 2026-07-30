@@ -10,7 +10,7 @@ The runner operates only on the computer or NAS that you choose. Do not expose i
 
 - Google Chrome with the GoPro Downloader extension installed.
 - A Mac, Windows PC, QNAP, or Synology NAS with enough free storage.
-- Docker Desktop, QNAP Container Station, or Synology Container Manager.
+- OrbStack or Docker Desktop on Mac, Docker Desktop on Windows, QNAP Container Station, or Synology Container Manager.
 - One persistent folder mounted read/write to `/data` inside the container.
 - Runner image: `teze3808/gopro-downloader-runner:latest`
 - Container port: `8766`
@@ -27,20 +27,78 @@ The runner automatically creates:
 
 | Where the runner will run | Recommended method | Runner URL before HTTPS |
 | --- | --- | --- |
-| Same Mac as Chrome | [Mac with Docker Desktop](#option-1-mac-with-docker-desktop) | `http://127.0.0.1:8766` |
-| Same Windows PC as Chrome | [Windows with Docker Desktop](#option-2-windows-with-docker-desktop) | `http://127.0.0.1:8766` |
-| QNAP NAS | [QNAP Container Station](#option-3-qnap-container-station) | `http://QNAP_IP:ASSIGNED_PORT` |
-| Synology NAS | [Synology Container Manager](#option-4-synology-container-manager) | `http://SYNOLOGY_IP:ASSIGNED_PORT` |
+| Same Mac as Chrome | [Mac with OrbStack (recommended)](#option-1-mac-with-orbstack-recommended) | `http://127.0.0.1:8766` |
+| Same Mac, Docker Desktop already installed | [Mac with Docker Desktop](#option-2-mac-with-docker-desktop) | `http://127.0.0.1:8766` |
+| Same Windows PC as Chrome | [Windows with Docker Desktop and WSL 2](#option-3-windows-with-docker-desktop-and-wsl-2) | `http://127.0.0.1:8766` |
+| QNAP NAS | [QNAP Container Station](#option-4-qnap-container-station) | `http://QNAP_IP:ASSIGNED_PORT` |
+| Synology NAS | [Synology Container Manager](#option-5-synology-container-manager) | `http://SYNOLOGY_IP:ASSIGNED_PORT` |
 
 Use `127.0.0.1` only when Chrome and the runner are on the same computer. For a NAS, use the NAS IP address and complete the HTTPS wizard.
 
-## Option 1: Mac With Docker Desktop
+## Option 1: Mac With OrbStack (Recommended)
+
+OrbStack is the simplest recommended option for a personal Mac. It provides a lightweight Docker-compatible environment, and the standard `docker` commands in this guide work without modification.
+
+### Step 1: Install OrbStack
+
+1. Open the official [OrbStack website](https://orbstack.dev/) or [OrbStack documentation](https://docs.orbstack.dev/).
+2. Download OrbStack and move it to the `Applications` folder.
+3. Open OrbStack.
+4. Complete the short first-run setup.
+5. Wait until OrbStack reports that Docker is running.
+
+A Docker Hub account is not required to run the public runner image.
+
+### Step 2: Create the Storage Folder
+
+Open `Terminal` from `Applications` > `Utilities`, then run:
+
+```bash
+mkdir -p "$HOME/GoPro-Downloader"
+```
+
+All downloaded media, runner state, logs, and certificates will stay in this folder.
+
+### Step 3: Start the Runner
+
+Paste this entire command into Terminal:
+
+```bash
+docker run -d \
+  --name gopro-downloader-runner \
+  --restart unless-stopped \
+  -p 127.0.0.1:8766:8766 \
+  -v "$HOME/GoPro-Downloader:/data" \
+  teze3808/gopro-downloader-runner:latest
+```
+
+Verify that it is running:
+
+```bash
+docker ps --filter name=gopro-downloader-runner
+```
+
+The command should list a running container named `gopro-downloader-runner`.
+
+### Step 4: Connect the Extension
+
+1. Open [http://127.0.0.1:8766](http://127.0.0.1:8766) in Chrome.
+2. Confirm that the GoPro Downloader Runner dashboard appears.
+3. Open the GoPro Downloader extension.
+4. Set `Download method` to `aria2 runner`.
+5. Enter:
+
+   ```text
+   http://127.0.0.1:8766
+   ```
+
+6. Click `Open runner dashboard` to test it.
+
+Because the runner is on the same Mac, localhost HTTP is allowed. You do not need to install a certificate unless you want to access this runner from another computer.
+
+## Option 2: Mac With Docker Desktop
 
 ### Step 1: Install Docker Desktop
-
-> **Screenshot placeholder: Mac Docker Desktop installation**  
-> File: `screenshots/mac-01-docker-desktop-install.png`  
-> Show the Docker Desktop download or installation screen for Apple silicon and Intel Macs.
 
 1. Open the official [Docker Desktop for Mac installation guide](https://docs.docker.com/desktop/setup/install/mac-install/).
 2. Choose the correct download:
@@ -65,10 +123,6 @@ mkdir -p "$HOME/GoPro-Downloader"
 All downloaded media, runner state, logs, and certificates will stay in this folder.
 
 ### Step 3: Start the Runner
-
-> **Screenshot placeholder: Mac Docker Desktop running**  
-> File: `screenshots/mac-02-runner-container-running.png`  
-> Show Docker Desktop with `gopro-downloader-runner` in the running state.
 
 Paste this entire command into Terminal:
 
@@ -103,13 +157,9 @@ docker ps --filter name=gopro-downloader-runner
 
 Because the runner is on the same Mac, localhost HTTP is allowed. You do not need to install a certificate unless you want to access this runner from another computer.
 
-## Option 2: Windows With Docker Desktop
+## Option 3: Windows With Docker Desktop and WSL 2
 
 ### Step 1: Install Docker Desktop
-
-> **Screenshot placeholder: Windows Docker Desktop installation**  
-> File: `screenshots/windows-01-docker-desktop-install.png`  
-> Show the Docker Desktop installer with the WSL 2 option.
 
 1. Open the official [Docker Desktop for Windows installation guide](https://docs.docker.com/desktop/setup/install/windows-install/).
 2. Download and run `Docker Desktop Installer.exe`.
@@ -136,10 +186,6 @@ New-Item -ItemType Directory -Force -Path $DataPath
 ```
 
 ### Step 3: Start the Runner
-
-> **Screenshot placeholder: Windows runner container running**  
-> File: `screenshots/windows-02-runner-container-running.png`  
-> Show Docker Desktop with `gopro-downloader-runner` in the running state.
 
 Continue in the same PowerShell window:
 
@@ -174,7 +220,7 @@ docker ps --filter "name=gopro-downloader-runner"
 
 Because the runner is on the same Windows PC, localhost HTTP is allowed.
 
-## Option 3: QNAP Container Station
+## Option 4: QNAP Container Station
 
 The labels may differ slightly between Container Station versions.
 
@@ -196,10 +242,6 @@ You need only one storage mapping. The runner creates its own `gopro`, `batches`
 
 ### Step 2: Download the Image
 
-> **Screenshot placeholder: QNAP Docker Hub image**  
-> File: `screenshots/qnap-01-runner-image.png`  
-> Show Container Station selecting `teze3808/gopro-downloader-runner:latest`.
-
 1. Open `Container Station`.
 2. Open `Images`, `Create`, or the Docker Hub search page, depending on your version.
 3. Search for:
@@ -212,10 +254,6 @@ You need only one storage mapping. The runner creates its own `gopro`, `batches`
 5. Create a new container from the image.
 
 ### Step 3: Configure the Container
-
-> **Screenshot placeholder: QNAP port and storage mappings**  
-> File: `screenshots/qnap-02-port-storage-mapping.png`  
-> Show the automatically assigned host port mapped to container port `8766`, plus one read/write host folder mapped to `/data`.
 
 Use these settings:
 
@@ -235,10 +273,6 @@ Do not override the command or entrypoint. Privileged mode, interactive mode, an
 Apply the settings and start the container. Container Station selects an available host port.
 
 ### Step 4: Open the Dashboard
-
-> **Screenshot placeholder: QNAP runner dashboard**  
-> File: `screenshots/qnap-03-runner-dashboard.png`  
-> Show the runner dashboard opened using the QNAP IP address and host port.
 
 1. Open the running container's details in Container Station.
 2. Find the host port assigned to container port `8766`.
@@ -263,15 +297,11 @@ The official [QNAP container creation documentation](https://docs.qnap.com/opera
 
 Continue with [HTTPS Setup for a NAS Runner](#https-setup-for-a-nas-runner).
 
-## Option 4: Synology Container Manager
+## Option 5: Synology Container Manager
 
 This method uses the Container Manager interface. No extra configuration file or command line is required.
 
 ### Step 1: Prepare Synology
-
-> **Screenshot placeholder: Synology storage folder**
-> File: `screenshots/synology-01-storage-folder.png`
-> Show the `gopro-downloader` folder in File Station.
 
 1. Open DSM.
 2. Open `Package Center`.
@@ -301,10 +331,6 @@ If your Docker shared folder is on another volume, replace `volume1` with the co
 
 ### Step 3: Create the Container
 
-> **Screenshot placeholder: Synology port and storage mappings**
-> File: `screenshots/synology-02-port-storage-mapping.png`
-> Show the automatically assigned local port mapped to container port `8766`, plus one read/write host folder mapped to `/data`.
-
 1. Select `Image`.
 2. Select `teze3808/gopro-downloader-runner:latest`.
 3. Click `Run`.
@@ -333,10 +359,6 @@ If your Docker shared folder is on another volume, replace `volume1` with the co
 
 ### Step 4: Open the Dashboard
 
-> **Screenshot placeholder: Synology runner dashboard**
-> File: `screenshots/synology-03-runner-dashboard.png`
-> Show the runner dashboard opened using the Synology IP address and host port.
-
 1. Open the running container's details in Container Manager.
 2. Find the local port assigned to container port `8766`.
 3. Find the Synology IP address in DSM.
@@ -362,10 +384,6 @@ Continue with the next section.
 
 Chrome extensions require a secure HTTPS connection when the runner is on another computer or NAS. The runner's first-visit wizard creates a private local certificate authority and a certificate for the NAS address.
 
-> **Screenshot placeholder: Runner HTTPS wizard**  
-> File: `screenshots/https-01-runner-wizard.png`  
-> Show the wizard detecting the NAS IP address and offering `Enable HTTPS`.
-
 Keep `/data/certs` safe and persistent. If it is deleted, the runner creates a new certificate authority and every Chrome computer must trust the new certificate again.
 
 ### Step 1: Generate the Certificate
@@ -381,10 +399,6 @@ The downloaded file is normally named `gopro-downloader-runner-ca.crt`.
 
 ### Step 2A: Trust the Certificate on Mac
 
-> **Screenshot placeholder: Trust the runner CA on Mac**  
-> File: `screenshots/https-02-mac-keychain-trust.png`  
-> Show the imported certificate in Keychain Access with `Always Trust` selected.
-
 1. Open the downloaded `gopro-downloader-runner-ca.crt`.
 2. If macOS opens `Keychain Access`, add it to the `System` keychain.
 3. Open `System` > `Certificates` and find `GoPro Downloader Runner Local CA`.
@@ -396,10 +410,6 @@ The downloaded file is normally named `gopro-downloader-runner-ca.crt`.
 9. Reopen Chrome.
 
 ### Step 2B: Trust the Certificate on Windows
-
-> **Screenshot placeholder: Trust the runner CA on Windows**  
-> File: `screenshots/https-03-windows-certificate-store.png`  
-> Show `Trusted Root Certification Authorities` selected in the Certificate Import Wizard.
 
 1. Double-click `gopro-downloader-runner-ca.crt`.
 2. Click `Install Certificate`.
@@ -433,10 +443,6 @@ If Chrome still shows a privacy warning, do not bypass it. Check that:
 
 ## Connect the Extension to a NAS Runner
 
-> **Screenshot placeholder: Extension runner settings**  
-> File: `screenshots/extension-01-aria2-runner-url.png`  
-> Show `aria2 runner` selected, the HTTPS runner URL, and the `Open runner dashboard` button.
-
 1. Sign in to [GoPro Media Library](https://gopro.com/media-library/) in Chrome.
 2. Open the GoPro Downloader extension.
 3. Set `Download method` to `aria2 runner`.
@@ -452,10 +458,6 @@ The extension first gathers or updates the GoPro Cloud inventory. The runner com
 Keep the GoPro Media Library tab open while the extension is gathering inventory and resolving fresh download URLs.
 
 ## Check Progress
-
-> **Screenshot placeholder: Overall download progress**  
-> File: `screenshots/dashboard-01-cloud-vs-local.png`  
-> Show `Cloud Media vs Local Downloaded`, including complete, missing, partial, and need-download counts.
 
 Open the runner dashboard to see:
 

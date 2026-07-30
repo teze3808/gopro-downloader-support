@@ -6,7 +6,7 @@ This is an independent community project. It is not affiliated with, authorized 
 
 ## Installation Guides
 
-- [Install the aria2 download runner on Mac, Windows, QNAP, or Synology](RUNNER_INSTALLATION.md)
+- [Install the aria2 runner with OrbStack or Docker Desktop on Mac, Docker Desktop on Windows, QNAP, or Synology](RUNNER_INSTALLATION.md)
 - [GoPro Downloader Privacy Policy](PRIVACY.md)
 
 ## Help and Feedback

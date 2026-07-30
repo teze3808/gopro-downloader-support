@@ -18,6 +18,7 @@ body:
       label: Runner platform
       description: Where are you trying to run the downloader runner?
       options:
+        - Mac with OrbStack
         - Mac with Docker Desktop
         - Windows with Docker Desktop
         - QNAP Container Station
@@ -41,7 +42,7 @@ body:
       label: Installation stage
       description: Where did you become stuck?
       options:
-        - Installing Docker or the NAS container application
+        - Installing OrbStack, Docker Desktop, or the NAS container application
         - Finding or downloading the runner image
         - Creating the container
         - Configuring the port mapping
