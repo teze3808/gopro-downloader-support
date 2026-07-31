@@ -537,6 +537,8 @@ If Chrome still shows a privacy warning, do not bypass it. Check that:
 
 ## Connect the Extension to a NAS Runner
 
+> **IMPORTANT: Keep the GoPro Media Library tab open throughout the entire download.** Do not close the tab, navigate away from the Media Library, or quit Chrome while the extension is gathering inventory, resolving fresh download URLs, creating batches, or downloading files.
+
 1. Sign in to [GoPro Media Library](https://gopro.com/media-library/) in Chrome.
 2. Open the GoPro Downloader extension.
 3. Set `Download method` to `aria2 runner`.
@@ -551,7 +553,7 @@ If Chrome still shows a privacy warning, do not bypass it. Check that:
 
 The extension first gathers or updates the GoPro Cloud inventory. The runner compares that inventory with local files and queues only media that is missing or incomplete.
 
-Keep the GoPro Media Library tab open while the extension is gathering inventory and resolving fresh download URLs.
+Keep the GoPro Media Library tab open until the extension reports that the overall download operation has finished.
 
 ## Check Progress
 
