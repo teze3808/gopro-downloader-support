@@ -1,6 +1,6 @@
 # Privacy Policy for GoPro Downloader
 
-Effective date: July 28, 2026
+Effective date: July 29, 2026
 
 GoPro Downloader is an independent Chrome extension that helps users download media from their own GoPro Cloud Media Library. It supports direct Chrome downloads and an optional runner operated by the user on their own computer or network-attached storage.
 
@@ -31,7 +31,9 @@ The processed information is used only to:
 
 ## Storage and Retention
 
-Extension settings and recent status information are stored locally using Chrome extension storage. Chrome download records are managed by Chrome.
+Extension settings, recent status information, diagnostic logs, and Chrome download batch status are stored locally using Chrome extension storage. Up to 2,000 recent diagnostic entries are retained so download activity can be reviewed even when the extension popup is closed. Chrome's own download records are managed by Chrome.
+
+The extension can create a local diagnostic JSON file only when the user clicks the export control. The file can contain redacted settings, environment information, recent errors, runner status, and batch summaries. Signed URL query parameters, passwords, cookies, tokens, authorization values, and other common secrets are removed automatically. The user decides whether to share the exported file.
 
 When runner mode is used, inventory files, batch manifests, logs, temporary signed URLs, and downloaded media may be stored in folders controlled by the user on their own computer or NAS. Their retention is controlled by the user.
 
@@ -65,16 +67,17 @@ Users can:
 
 - Stop an active download from the extension.
 - Revoke runner-site access through Chrome's extension site-access settings.
-- Clear locally stored extension data by removing the extension.
+- Clear diagnostic logs from the extension.
+- Delete all locally saved extension logs, settings, and Chrome batch history from the extension.
+- Clear all locally stored extension data by removing the extension.
 - Delete downloaded media, inventory files, manifests, and logs from their own storage.
 
 ## Changes
 
-Material changes to this policy will be published here and reflected in the Chrome Web Store privacy disclosures before the changed data practice is released.
+Material changes to this policy will be published in this repository and reflected in the Chrome Web Store privacy disclosures before the changed data practice is released.
 
 ## Contact
 
-Questions or privacy requests can be submitted through the public issue tracker:
+Questions or privacy requests can be submitted through the project's GitHub issue tracker:
 
 https://github.com/teze3808/gopro-downloader-support/issues
-
