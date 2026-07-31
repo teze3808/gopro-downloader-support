@@ -568,6 +568,10 @@ Open the runner dashboard to see:
 
 A batch can finish while another batch is still being prepared. Use the overall **Cloud Media vs Local Downloaded** section to decide whether the complete library has finished.
 
+This example shows the dashboard during an early download. The counts are sample values; use the values reported by your own runner:
+
+<img src="screenshots/dashboard-01-download-running.png" alt="GoPro Downloader Runner dashboard showing an active download and cloud-versus-local progress" width="900">
+
 The extension also shows the current inventory page and a detailed action log:
 
 <img src="screenshots/extension-02-download-progress.png" alt="GoPro Downloader extension current status and download log" width="420">

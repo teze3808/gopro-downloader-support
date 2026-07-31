@@ -49,4 +49,8 @@ The supplied Synology screenshots use the classic Docker package. Newer DSM vers
 1. `extension-01-start-download.png`
 2. `extension-02-download-progress.png`
 
+## Runner Dashboard
+
+1. `dashboard-01-download-running.png`
+
 The screenshots intentionally hide private NAS addresses where appropriate. Never add passwords, cookies, signed media URLs, private keys, or unreviewed personal filenames.

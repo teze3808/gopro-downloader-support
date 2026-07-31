@@ -27,6 +27,10 @@ The full runner guide includes step-by-step screenshots for QNAP, Synology, HTTP
 
 <img src="screenshots/extension-02-download-progress.png" alt="GoPro Downloader extension showing inventory and download progress" width="420">
 
+The runner dashboard shows overall cloud-versus-local progress, the active batch, partial files, and files that still need downloading:
+
+<img src="screenshots/dashboard-01-download-running.png" alt="GoPro Downloader Runner dashboard while a download is running" width="760">
+
 ## Help and Feedback
 
 Open the structured issue chooser and select the form that matches what you need:
