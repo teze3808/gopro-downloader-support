@@ -27,6 +27,12 @@ The supplied Synology screenshots use the classic Docker package. Newer DSM vers
 2. `https-02-download-ca.png`
 3. `https-03-copy-runner-url.png`
 
+## macOS CA Installation
+
+1. `mac-ca-01-install-certificate.png`
+2. `mac-ca-02-always-trust.png`
+3. `mac-ca-03-verify-installed.png`
+
 ## Windows CA Installation
 
 1. `windows-ca-01-downloaded-file.png`

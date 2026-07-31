@@ -457,6 +457,18 @@ The downloaded file is normally named `gopro-downloader-runner-ca.crt`.
 8. Completely quit Chrome with `Chrome` > `Quit Google Chrome`.
 9. Reopen Chrome.
 
+In Keychain Access, select the `System` keychain and find `GoPro Downloader Runner Local CA`. Before it is trusted, macOS shows a red warning:
+
+<img src="screenshots/mac-ca-01-install-certificate.png" alt="GoPro Downloader Runner Local CA installed in the macOS System keychain but not yet trusted" width="900">
+
+Double-click the certificate, expand `Trust`, and set `When using this certificate` to `Always Trust`:
+
+<img src="screenshots/mac-ca-02-always-trust.png" alt="macOS Keychain Access setting the runner CA certificate to Always Trust" width="620">
+
+After approving the change, return to the `System` keychain. The certificate should say that it is trusted for all users:
+
+<img src="screenshots/mac-ca-03-verify-installed.png" alt="macOS Keychain Access showing the runner CA certificate trusted for all users" width="900">
+
 ### Step 2B: Trust the Certificate on Windows
 
 1. Double-click `gopro-downloader-runner-ca.crt`.
