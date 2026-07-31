@@ -230,10 +230,10 @@ The labels may differ slightly between Container Station versions.
 2. Open `App Center`.
 3. Install or update `Container Station`.
 4. Open `File Station`.
-5. Create a persistent folder for the runner, for example:
+5. Choose or create a persistent folder for the runner, for example:
 
    ```text
-   /share/Container/gopro-downloader
+   /Multimedia/gopro_media
    ```
 
 6. Make sure the folder is writable by Container Station.
@@ -266,7 +266,7 @@ Use these settings:
 | Network protocol | TCP |
 | Host port | Automatic/random |
 | Container port | `8766` |
-| Host storage folder | `/share/Container/gopro-downloader` or your chosen folder |
+| Host storage folder | Your chosen folder, for example: `/Multimedia/gopro_media` |
 | Container storage path | `/data` |
 | Storage access | Read/write |
 
@@ -331,13 +331,13 @@ The screenshots below use Synology's earlier `Docker` package. On newer DSM vers
 2. Open `Package Center`.
 3. Install or update `Container Manager`.
 4. Open `File Station`.
-5. Create a persistent folder:
+5. Choose or create a persistent folder for the runner, for example:
 
    ```text
-   /volume1/docker/gopro-downloader
+   /video/gopro_media
    ```
 
-If your Docker shared folder is on another volume, replace `volume1` with the correct volume.
+The folder can be on any Synology volume, provided Container Manager has read/write access.
 
 ### Step 2: Download the Image
 
@@ -383,7 +383,7 @@ Select the downloaded `latest` image:
 
    | Synology folder | Container path | Access |
    | --- | --- | --- |
-   | `/volume1/docker/gopro-downloader` | `/data` | Read/write |
+   | Your chosen folder, for example: `/video/gopro_media` | `/data` | Read/write |
 
 8. Keep the default bridge network.
 9. Do not override the command or entrypoint.
