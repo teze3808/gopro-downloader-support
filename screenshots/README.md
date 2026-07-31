@@ -48,6 +48,8 @@ The supplied Synology screenshots use the classic Docker package. Newer DSM vers
 
 1. `extension-01-start-download.png`
 2. `extension-02-download-progress.png`
+3. `extension-03-chrome-download-mode.png`
+4. `extension-04-aria2-runner-mode.png`
 
 ## Runner Dashboard
 

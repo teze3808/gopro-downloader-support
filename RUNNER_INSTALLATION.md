@@ -6,6 +6,22 @@ The aria2 runner is recommended for a large GoPro Cloud library or an unreliable
 
 The runner operates only on the computer or NAS that you choose. Do not expose it directly to the public internet.
 
+## Choose a Download Method
+
+### Chrome Download
+
+Choose **Chrome download** for a small library, especially when you have fewer than about 100 files. It needs no runner installation and saves through Chrome's normal download system.
+
+<img src="screenshots/extension-03-chrome-download-mode.png" alt="GoPro Downloader extension using Chrome download mode" width="420">
+
+### aria2 Runner
+
+Choose **aria2 runner** for a large library or when you want to download directly to a NAS or server, resume interrupted files, retry failures, compare cloud inventory with local files, and monitor progress in the dashboard.
+
+<img src="screenshots/extension-04-aria2-runner-mode.png" alt="GoPro Downloader extension using aria2 runner mode" width="420">
+
+The rest of this guide explains how to install and connect the aria2 runner.
+
 ## What You Need
 
 - Google Chrome with the GoPro Downloader extension installed.

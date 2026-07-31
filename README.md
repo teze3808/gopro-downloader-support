@@ -15,6 +15,15 @@ The full runner guide includes step-by-step screenshots for QNAP, Synology, HTTP
 
 [Open the complete runner installation guide](RUNNER_INSTALLATION.md)
 
+### Choose a Download Method
+
+Use Chrome download for a small library. Use the aria2 runner for NAS/server downloads, resumable transfers, retries, and dashboard monitoring.
+
+<p>
+  <img src="screenshots/extension-03-chrome-download-mode.png" alt="GoPro Downloader Chrome download mode" width="350">
+  <img src="screenshots/extension-04-aria2-runner-mode.png" alt="GoPro Downloader aria2 runner mode" width="350">
+</p>
+
 ### Install on a NAS
 
 <img src="screenshots/qnap-01-select-image.png" alt="Select the GoPro Downloader Runner image in QNAP Container Station" width="760">
