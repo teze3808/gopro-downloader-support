@@ -1,30 +1,46 @@
-# Optional Guide Screenshot Plan
+# Guide Screenshots
 
-The installation guide is complete and usable without screenshots. Future screenshots can be added here when suitable private information has been removed.
+These screenshots are arranged by platform and workflow order. The filenames are stable so the installation guide can link to them directly.
 
-| Filename | Required screen |
-| --- | --- |
-| `mac-01-orbstack-install.png` | OrbStack installation or first-run setup on Mac |
-| `mac-02-orbstack-runner.png` | Running runner container in OrbStack |
-| `mac-01-docker-desktop-install.png` | Docker Desktop installation on Mac |
-| `mac-02-runner-container-running.png` | Running runner container on Mac |
-| `windows-01-docker-desktop-install.png` | Docker Desktop installation with WSL 2 on Windows |
-| `windows-02-runner-container-running.png` | Running runner container on Windows |
-| `qnap-01-runner-image.png` | Runner image in QNAP Container Station |
-| `qnap-02-port-storage-mapping.png` | QNAP random host port and single `/data` mapping |
-| `qnap-03-runner-dashboard.png` | Runner dashboard reached through QNAP |
-| `synology-01-storage-folder.png` | Synology runner storage folder |
-| `synology-02-port-storage-mapping.png` | Synology random local port and single `/data` mapping |
-| `synology-03-runner-dashboard.png` | Runner dashboard reached through Synology |
-| `https-01-runner-wizard.png` | Runner HTTPS setup wizard |
-| `https-02-mac-keychain-trust.png` | Mac Keychain certificate trust |
-| `https-03-windows-certificate-store.png` | Windows trusted root certificate import |
-| `extension-01-aria2-runner-url.png` | Extension aria2 runner URL setting |
-| `dashboard-01-cloud-vs-local.png` | Cloud media versus local downloaded dashboard |
+## QNAP Container Station
 
-Before committing screenshots:
+1. `qnap-01-select-image.png`
+2. `qnap-02-configure-container.png`
+3. `qnap-03-storage-mapping.png`
+4. `qnap-04-review-finish.png`
+5. `qnap-05-verify-running.png`
+6. `qnap-06-find-host-port.png`
 
-- Crop out unrelated desktop content.
-- Hide usernames, IP addresses if private, media filenames, browser profiles, and NAS share names if needed.
-- Do not show passwords, cookies, signed URLs, private keys, or GoPro account details.
-- Prefer PNG at native resolution.
+## Synology Docker
+
+1. `synology-01-registry-search.png`
+2. `synology-02-select-image.png`
+3. `synology-03-general-settings.png`
+4. `synology-04-volume-mapping.png`
+5. `synology-05-review-apply.png`
+
+The supplied Synology screenshots use the classic Docker package. Newer DSM versions call it Container Manager, but the image, port, and volume settings are the same.
+
+## Runner HTTPS Setup
+
+1. `https-01-enable-https.png`
+2. `https-02-download-ca.png`
+3. `https-03-copy-runner-url.png`
+
+## Windows CA Installation
+
+1. `windows-ca-01-downloaded-file.png`
+2. `windows-ca-02-install-certificate.png`
+3. `windows-ca-03-local-machine.png`
+4. `windows-ca-04-trusted-root-store.png`
+5. `windows-ca-05-finish-import.png`
+6. `windows-ca-06-confirm-trust.png`
+7. `windows-ca-07-open-certificate-manager.png`
+8. `windows-ca-08-verify-installed.png`
+
+## Chrome Extension
+
+1. `extension-01-start-download.png`
+2. `extension-02-download-progress.png`
+
+The screenshots intentionally hide private NAS addresses where appropriate. Never add passwords, cookies, signed media URLs, private keys, or unreviewed personal filenames.

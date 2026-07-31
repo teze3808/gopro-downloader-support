@@ -9,6 +9,24 @@ This is an independent community project. It is not affiliated with, authorized 
 - [Install the aria2 runner with OrbStack or Docker Desktop on Mac, Docker Desktop on Windows, QNAP, or Synology](RUNNER_INSTALLATION.md)
 - [GoPro Downloader Privacy Policy](PRIVACY.md)
 
+## Visual Setup Guide
+
+The full runner guide includes step-by-step screenshots for QNAP, Synology, HTTPS setup, Windows certificate installation, and connecting the Chrome extension.
+
+[Open the complete runner installation guide](RUNNER_INSTALLATION.md)
+
+### Install on a NAS
+
+<img src="screenshots/qnap-01-select-image.png" alt="Select the GoPro Downloader Runner image in QNAP Container Station" width="760">
+
+### Secure the Runner
+
+<img src="screenshots/https-02-download-ca.png" alt="Download the runner CA certificate from the HTTPS setup wizard" width="760">
+
+### Start and Monitor Downloads
+
+<img src="screenshots/extension-02-download-progress.png" alt="GoPro Downloader extension showing inventory and download progress" width="420">
+
 ## Help and Feedback
 
 Open the structured issue chooser and select the form that matches what you need:

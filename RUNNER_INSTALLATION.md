@@ -253,6 +253,8 @@ You need only one storage mapping. The runner creates its own `gopro`, `batches`
 4. Select the `latest` tag and download or install it.
 5. Create a new container from the image.
 
+<img src="screenshots/qnap-01-select-image.png" alt="QNAP Container Station image selection" width="900">
+
 ### Step 3: Configure the Container
 
 Use these settings:
@@ -270,7 +272,19 @@ Use these settings:
 
 Do not override the command or entrypoint. Privileged mode, interactive mode, and TTY are not required.
 
+Enter the container name, select `Unless Stopped`, and open `Advanced Settings`:
+
+<img src="screenshots/qnap-02-configure-container.png" alt="QNAP container name and advanced settings" width="900">
+
+Under `Storage`, map your chosen QNAP folder to `/data` with read/write access:
+
+<img src="screenshots/qnap-03-storage-mapping.png" alt="QNAP storage mapping from a host folder to container path data" width="900">
+
 Apply the settings and start the container. Container Station selects an available host port.
+
+Review the summary and click `Finish`:
+
+<img src="screenshots/qnap-04-review-finish.png" alt="QNAP container summary and Finish button" width="900">
 
 ### Step 4: Open the Dashboard
 
@@ -278,6 +292,14 @@ Apply the settings and start the container. Container Station selects an availab
 2. Find the host port assigned to container port `8766`.
 3. Find the QNAP IP address in QTS.
 4. Open:
+
+Confirm that the container is running, then open its details:
+
+<img src="screenshots/qnap-05-verify-running.png" alt="QNAP Container Station showing the runner container is running" width="900">
+
+Find the host port mapped to `8766/TCP`. In this example, the assigned host port is `32773`:
+
+<img src="screenshots/qnap-06-find-host-port.png" alt="QNAP container details showing the assigned host port" width="900">
 
 ```text
 http://QNAP_IP:ASSIGNED_PORT
@@ -300,6 +322,8 @@ Continue with [HTTPS Setup for a NAS Runner](#https-setup-for-a-nas-runner).
 ## Option 5: Synology Container Manager
 
 This method uses the Container Manager interface. No extra configuration file or command line is required.
+
+The screenshots below use Synology's earlier `Docker` package. On newer DSM versions, open `Container Manager`; the image, port, and volume settings are equivalent even when the labels look slightly different.
 
 ### Step 1: Prepare Synology
 
@@ -329,6 +353,14 @@ If your Docker shared folder is on another volume, replace `volume1` with the co
 5. Select the `latest` tag.
 6. Wait for the download to finish.
 
+Search Docker Hub for the runner:
+
+<img src="screenshots/synology-01-registry-search.png" alt="Synology Docker registry search for GoPro Downloader Runner" width="900">
+
+Select the downloaded `latest` image:
+
+<img src="screenshots/synology-02-select-image.png" alt="Synology Docker image list with GoPro Downloader Runner selected" width="900">
+
 ### Step 3: Create the Container
 
 1. Select `Image`.
@@ -356,6 +388,18 @@ If your Docker shared folder is on another volume, replace `volume1` with the co
 8. Keep the default bridge network.
 9. Do not override the command or entrypoint.
 10. Review the settings and start the container.
+
+Set the container name and open `Advanced Settings`:
+
+<img src="screenshots/synology-03-general-settings.png" alt="Synology runner container general settings" width="900">
+
+In `Volume`, add one writable folder and map it to `/data`:
+
+<img src="screenshots/synology-04-volume-mapping.png" alt="Synology volume mapping from a host folder to container path data" width="900">
+
+Review the automatically assigned local port, container port `8766`, and `/data` volume before clicking `Apply`:
+
+<img src="screenshots/synology-05-review-apply.png" alt="Synology runner container summary and Apply button" width="900">
 
 ### Step 4: Open the Dashboard
 
@@ -395,7 +439,11 @@ Keep `/data/certs` safe and persistent. If it is deleted, the runner creates a n
 5. Wait for the runner to generate its certificate, restart, and redirect the browser to HTTPS.
 6. Download the CA certificate from step 2 of the dashboard wizard.
 
+<img src="screenshots/https-01-enable-https.png" alt="Runner dashboard Enable HTTPS button" width="900">
+
 The downloaded file is normally named `gopro-downloader-runner-ca.crt`.
+
+<img src="screenshots/https-02-download-ca.png" alt="Runner HTTPS wizard Download CA certificate button" width="900">
 
 ### Step 2A: Trust the Certificate on Mac
 
@@ -420,6 +468,36 @@ The downloaded file is normally named `gopro-downloader-runner-ca.crt`.
 7. Completely close every Chrome window.
 8. Reopen Chrome.
 
+Open the downloaded certificate:
+
+<img src="screenshots/windows-ca-01-downloaded-file.png" alt="Downloaded runner CA certificate in Windows Downloads" width="700">
+
+Click `Install Certificate`:
+
+<img src="screenshots/windows-ca-02-install-certificate.png" alt="Windows certificate window with Install Certificate button" width="520">
+
+Choose `Local Machine`:
+
+<img src="screenshots/windows-ca-03-local-machine.png" alt="Windows Certificate Import Wizard Local Machine option" width="520">
+
+Place the certificate in `Trusted Root Certification Authorities`:
+
+<img src="screenshots/windows-ca-04-trusted-root-store.png" alt="Windows Trusted Root Certification Authorities certificate store selection" width="520">
+
+Finish the import and confirm that you trust the CA generated by your runner:
+
+<img src="screenshots/windows-ca-05-finish-import.png" alt="Windows Certificate Import Wizard Finish button" width="520">
+
+<img src="screenshots/windows-ca-06-confirm-trust.png" alt="Windows security warning confirming trust for the runner CA" width="520">
+
+To verify the installation, search Windows for `Manage computer certificates`:
+
+<img src="screenshots/windows-ca-07-open-certificate-manager.png" alt="Windows search result for Manage computer certificates" width="700">
+
+The certificate should appear under `Trusted Root Certification Authorities` > `Certificates`:
+
+<img src="screenshots/windows-ca-08-verify-installed.png" alt="GoPro Downloader Runner Local CA in the Windows trusted root store" width="700">
+
 Install only a CA certificate generated by your own runner. Do not share the CA private key stored in `/data/certs`.
 
 ### Step 3: Test HTTPS
@@ -433,6 +511,10 @@ Install only a CA certificate generated by your own runner. Do not share the CA 
 
 3. Open that URL directly in Chrome.
 4. Confirm that the dashboard opens without a certificate warning.
+
+The final wizard step displays the exact URL to copy into the extension:
+
+<img src="screenshots/https-03-copy-runner-url.png" alt="Runner HTTPS wizard showing the final runner URL" width="900">
 
 If Chrome still shows a privacy warning, do not bypass it. Check that:
 
@@ -453,6 +535,8 @@ If Chrome still shows a privacy warning, do not bypass it. Check that:
 8. Open the extension again.
 9. Click `Start / Retry all downloads`.
 
+<img src="screenshots/extension-01-start-download.png" alt="GoPro Downloader extension configured for the aria2 runner" width="420">
+
 The extension first gathers or updates the GoPro Cloud inventory. The runner compares that inventory with local files and queues only media that is missing or incomplete.
 
 Keep the GoPro Media Library tab open while the extension is gathering inventory and resolving fresh download URLs.
@@ -469,6 +553,10 @@ Open the runner dashboard to see:
 - Batch details and URL lookup failures.
 
 A batch can finish while another batch is still being prepared. Use the overall **Cloud Media vs Local Downloaded** section to decide whether the complete library has finished.
+
+The extension also shows the current inventory page and a detailed action log:
+
+<img src="screenshots/extension-02-download-progress.png" alt="GoPro Downloader extension current status and download log" width="420">
 
 ## Stop, Start, and Update
 
